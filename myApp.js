@@ -58,7 +58,7 @@ const findPersonById = (personId, done) => {
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
-  Person.updateMany({ _id: personId }, { $push: { favoriteFoods: foodToAdd } }, (err, data) => {
+  Person.updateOne({ _id: personId }, { $push: { favoriteFoods: foodToAdd } }, (err, data) => {
     if (err) return console.error(err);
     done(null, data);
   })
