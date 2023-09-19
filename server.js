@@ -68,6 +68,7 @@ const Person = require("./myApp.js").PersonModel;
 
 router.use(function (req, res, next) {
   if (req.method !== "OPTIONS" && Person.modelName !== "Person") {
+    console.log(Person)
     return next({ message: "Person Model is not correct" });
   }
   next();
