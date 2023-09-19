@@ -58,9 +58,17 @@ const findPersonById = (personId, done) => {
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
-  Person.updateOne({ _id: personId }, { $push: { favoriteFoods: foodToAdd } }, (err, data) => {
-    if (err) return console.error(err);
-    done(null, data);
+  Person.findById(personId, (err, person) => {
+    if(err) return console.log(err); 
+  
+    // Array.push() method to add "hamburger" to the list of the person's favoriteFoods
+    person.favoriteFoods.push(foodToAdd);
+
+    // and inside the find callback - save() the updated Person.
+    person.save((err, updatedPerson) => {
+      if(err) return console.log(err);
+      done(null, updatedPerson)
+    })
   })
 
   // done(null /*, data*/);
