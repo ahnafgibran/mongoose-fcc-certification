@@ -12,7 +12,11 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
   }
 });
 
-let Person = PersonModel.PersonModel;
+let Person = new PersonModel({
+  name: 'John',
+  age: 37,
+  favoriteFoods: ['Pizza', 'Hamburger']
+});
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
